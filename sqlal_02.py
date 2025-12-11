@@ -6,15 +6,18 @@ engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
 
 # create table in memory and insert data.
 with engine.connect() as conn:
-    conn.execute(text("CREATE TABLE myTable (x int, y int)"))
+    conn.execute(text("CREATE TABLE myTable (id int, fname str)"))
+
+    # insert 1st row
     conn.execute(
-        text("INSERT INTO myTable (x, y) VALUES (:x, :y)"),
-        [{"x": 1, "y": 1}, {"x": 2, "y": 4}],
+        text("INSERT INTO myTable (id, fname) VALUES (1000, 'Fred')" ), 
     )
+
+    # insert 2nd row
     conn.execute(
-        text("INSERT INTO myTable (x, y) VALUES (:x, :y)"),
-        [{"x": 3, "y": 2}, {"x": 4, "y": 4}],
+        text("INSERT INTO myTable (id, fname) VALUES (1001, 'Wilma')" ), 
     )
+
     conn.commit()   # commit changes 
 
 # execute SELECT on myTable 

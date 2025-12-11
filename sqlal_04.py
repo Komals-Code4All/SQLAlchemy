@@ -1,3 +1,6 @@
+
+''' In this example, pass parameters to the SELECT command '''
+
 from sqlalchemy import create_engine
 from sqlalchemy import text
 
@@ -5,21 +8,27 @@ from sqlalchemy import text
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=False)       # NB : echo off
 
 
-''' In this example, pass parameters to the SELECT command '''
 
 # create table in memory and insert data (many values)
 with engine.begin() as conn:    
-    conn.execute(text("CREATE TABLE myTable (x int, y int)"))
+    conn.execute(text("CREATE TABLE myTable (id int, fname str)"))
     conn.execute(
-        text("INSERT INTO myTable (x, y) VALUES (:x, :y)"),
-        [{"x": 1, "y": 1}, {"x": 2, "y": 4}, {"x": 3, "y": 2}, {"x": 4, "y": 4}],
-    )
+        text("INSERT INTO myTable (id, fname) VALUES (:id, :fname)"),
+        [{"id": 1000, "fname": "Fred"}, 
+         {"id": 1001, "fname": "Wilma"},
+         {"id": 1002, "fname": "Barney"},
+         {"id": 1003, "fname": "Betty"},
+         {"id": 1004, "fname": "Peebles"},
+         {"id": 1005, "fname": "Bambam"},],
+    )    
+
+# execute SELECT ... WHERE ... ORDER BY by fname
+with engine.connect() as conn:
+    result = conn.execute(
+        text("select * from myTable where fname like :name order by fname"), {"name": "B%"})
     
-
-# execute SELECT on myTable, with WHERE clause
-    result = conn.execute(text("select * from myTable where y >= :val "), {"val": 2})
-    print("\nSelect with WHERE y >= 2")
+    # Print the results
+    print(f"\nName \t Id")
+    print(20 * '-')
     for row in result:      # result comes back as a list
-        print(f"x: {row.x} \t y: {row.y}")
-
-
+        print(f"{row.fname} \t {row.id}")
