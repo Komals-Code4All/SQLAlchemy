@@ -1,12 +1,12 @@
 # SQL Alchamy Tutorial code
 
-Step-by-step code demonstarting SQLAlchemy
+Step-by-step code demonstrating SQLAlchemy
 
 https://docs.sqlalchemy.org/en/20/tutorial/index.html#unified-tutorial
 
 
 
-In these first few examples there is no SQL server. SQLAlchemy creates a temp SQL DB in memory. Data inserted into tables is lost when the program ends.
+In these first few examples there is no SQL server. SQLAlchemy creates a temp SQL database in memory. Data inserted into tables is lost when the program ends.
  
 
 | Program  | Demonstrating                                    |
