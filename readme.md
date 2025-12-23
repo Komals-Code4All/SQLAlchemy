@@ -4,7 +4,8 @@ Step-by-step code demonstrating SQLAlchemy
 
 https://docs.sqlalchemy.org/en/20/tutorial/index.html#unified-tutorial
 
-<code>pip install SQLalchemy<code>
+<code> pip install SQLalchemy <code>
+
 
 greenlet==3.3.0
 SQLAlchemy==2.0.45
