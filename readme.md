@@ -55,6 +55,6 @@ Finally, we use Python classes to define our database, whilst still using the un
 
 | Program              | Demonstrating                                    |
 | -------------------- | ------------------------------------------------ |
-| installTest.pyy      | Check SQLAlchemy version                         |
+| installTest.py       | Check SQLAlchemy version                         |
 | sqlal_99_mysql.py    | Connecting to local MySQL, using Sakila database |
 | sqlal_99_postgres.py | Connecting to local Postgres, Chinook database   |
