@@ -50,11 +50,11 @@ Finally, we use Python classes to define our database, whilst still using the un
 | Program  | Demonstrating                    |
 | -------- | -------------------------------- |
 | sqlal_21 | Define SQL table as an OOP oject |
-| sqlal_22 |                                  |
-| sqlal_23 |                                  |
 
 ## Misc Programs
 
-| Program           | Demonstrating                                    |
-| ----------------- | ------------------------------------------------ |
-| sqlal_99_mysql.py | Connecting to local installation of MySQL/Sakila |
+| Program              | Demonstrating                                    |
+| -------------------- | ------------------------------------------------ |
+| installTest.pyy      | Check SQLAlchemy version                         |
+| sqlal_99_mysql.py    | Connecting to local MySQL, using Sakila database |
+| sqlal_99_postgres.py | Connecting to local Postgres, Chinook database   |
