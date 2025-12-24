@@ -1,13 +1,20 @@
-from sqlalchemy import create_engine
+'''
 
+Getting started with SQLAlchemy     
+
+Komal, December 2025
+
+This example finally adds data to the 1st table. 
+We need to make a db connection so must include an import to create_engine module
+
+'''
+
+
+# imports
+from sqlalchemy import create_engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, text
 
-'''
-
-Create tables and add data
-
-'''
 
 # declare MetaData object
 metadata_obj = MetaData()
@@ -33,36 +40,36 @@ address_table = Table(
 # create DB engine object
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
 
-# create database tables
+# create all database tables defined above
 metadata_obj.create_all(engine)
 
-'''  Look at the terminal output, it should have SQL commands
+'''  
+    With echo=True, look at the terminal output, it should show SQL commands
 
     CREATE TABLE user_account (
         id INTEGER NOT NULL,
         name VARCHAR(30),
         fullname VARCHAR,
         PRIMARY KEY (id)
-)
-
+    )
 
 '''
 
-with engine.begin() as conn:    
-    #conn.execute(text("CREATE TABLE myTable (id int, fname str)"))
+with engine.begin() as conn:
 
-    # Insert multiple rows, in one execute, using SQL's substituton method
+    # Insert multiple rows, in one execute, using SQL's substitution method
     conn.execute(
         text("INSERT INTO user_account (id, name, fullname) VALUES (:id, :name, :fullname)"),
-        [{"id": 1000, "name": "Fred", "fullname":"Mr Fred Flinstone"}, 
+        [{"id": 1000, "name": "Fred", "fullname":"Mr Fred Flintstone"}, 
          {"id": 1001, "name": "Wilma", "fullname":"Mrs Wilma Flintstone"},
          {"id": 1002, "name": "Barney", "fullname":"Mr Barney Rubble"},
          {"id": 1003, "name": "Betty", "fullname":"Mrs Betty Rubble"},
          {"id": 1004, "name": "Peebles", "fullname":"Miss Pebbles Flintstone"},
-         {"id": 1005, "name": "Bambam", "fullname":"Master Bambam Rubble"},],
+         {"id": 1005, "name": "Bam Bam", "fullname":"Master Bam Bam Rubble"},],
     )    
+    
 
-# Open new DB connecion to execute SELECT
+# Open new DB connection to execute SELECT * query
 with engine.connect() as conn:
     result = conn.execute(text("select * from user_account order by id"))
     print("\n")

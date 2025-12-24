@@ -1,22 +1,27 @@
-from sqlalchemy import MetaData
-from sqlalchemy import Table, Column, Integer, String, ForeignKey
-
 '''
-Define a second table
----------------------
-NB: we don't actually create tables or add data in this example
 
+Getting started with SQLAlchemy     
+
+Komal, December 2025
+
+This example adds a 2nd table with a foreign key, connecting it to the 1st table.
 
 Define a user table
     Table:      user_account
     columns:    id(PK), name, full_name
 
 
-Define a user email_address table
+Define a user email_address table, with FK
     Table:      address
     columns:    id(PK), user_id(FK=user_account.name), email_address
 
+
 '''
+
+# imports
+from sqlalchemy import MetaData
+from sqlalchemy import Table, Column, Integer, String, ForeignKey
+
 
 # declare MetaData object
 metadata_obj = MetaData()
@@ -29,7 +34,7 @@ user_table = Table("user_account",
     Column("fullname", String),
 )
 
-# define user address table
+# define user email address table
 address_table = Table(
     "address",
     metadata_obj,
@@ -40,12 +45,14 @@ address_table = Table(
 
 
 # display database object definitions
-print('User table')
-print(user_table.c.name)
-print(user_table.primary_key)
-print(user_table.c.keys())
+print('\nUser table')
+print(f"Table columns: {user_table.c}") # 'c' is built-in 'column collection' object
+print(f"Table Primary key details : {user_table.primary_key}") 
+print(f"Table columns : {user_table.c.keys()}")
 
-print('Email adresses table')
-print(address_table.c.id)
-print(address_table.primary_key)
-print(address_table.c.keys())
+
+print('\nEmail addresses table')
+print(f"Table columns: {address_table.c}") # 'c' is built-in 'column collection' object
+print(f"Table Primary key details : {address_table.primary_key}") 
+print(f"Table columns : {address_table.c.keys()}")
+

@@ -1,21 +1,26 @@
+'''
 
+Getting started with SQLAlchemy     
 
+Komal, December 2025
+
+The previous examples used SQL Alchemy's MetaData and Table objects to define db tables.
+
+This example introduces using SQL Alchemy's DeclarativeBase CLASS to define tables as OOP classes.
+
+'''
+
+# imports
 from typing import List, Optional
 from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, text
 
 
-'''
-
-Define tables using OOP classes
-
-'''
-
 # use SQLAlchemy's DeclarativeBase class, as parent class for our tables
 class Base(DeclarativeBase):
     pass
 
-# define user_account table
+# define user_account table as class, with a print method
 class User(Base):
     __tablename__ = "user_account"
 
@@ -25,7 +30,7 @@ class User(Base):
     fullname: Mapped[Optional[str]]
     addresses: Mapped[List["Address"]] = relationship(back_populates="user")
 
-    # printing method format - 'repr' is a string representaton, built-in function
+    # printing method format - 'repr' is a string representation, built-in function
     def __repr__(self) -> str:
         return f"User(id={self.id!r}, name={self.name!r}, fullname={self.fullname!r})"
 
@@ -42,20 +47,20 @@ class Address(Base):
 
     user: Mapped[User] = relationship(back_populates="addresses")
 
-    # printing method format - 'repr' is a string representaton, built-in function
+    # printing method format - 'repr' is a string representation, built-in function
     def __repr__(self) -> str:
         return f"Address(id={self.id!r}, email_address={self.email_address!r})"
 
 
-# add data using OOP classes
-fred = User(id=1000, name="Fred", fullname="Mr Fred Flinstone")
+# With tables defined as classes add data by creating objects
+fred = User(id=1000, name="Fred", fullname="Mr Fred Flintstone")
 wilma = User(id=1001, name="Wilma", fullname="Mrs Wilma Flintstone")
 
 barney = User(id=1002, name="Barney", fullname="Mr Barney Rubble")
 betty = User(id=1003, name="Betty", fullname="Mrs Betty Rubble")
 
 pebbles=User(id=1004, name="Peebles", fullname="Miss Pebbles Flintstone"),
-bambam=User(id=1005, name="Bambam", fullname="Master Bambam Rubble")
+bambam=User(id=1005, name="Bam Bam", fullname="Master Bam Bam Rubble")
 
 
 # print objects

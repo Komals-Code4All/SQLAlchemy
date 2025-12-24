@@ -1,15 +1,20 @@
 '''
-DATABASE REFLECTION 
-------------------- 
+
+Getting started with SQLAlchemy     
+
+Komal, December 2025
+
+DATABASE REFLECTION     https://docs.sqlalchemy.org/en/20/core/reflection.html
 
 This program accesses a local MySQL server and connects to the SAKILA database.
 Information about the database's tables and their columns is then retrieved. 
 
-This could be done using SQL connectors and SQL statement 'SHOW TABLES'. 
-However, here it is done in an OOP style
+This could be done using MySQL's database connection module and SQL statement 'SHOW TABLES'. 
+However, here it is done in SQL Alchemy's OOP style
 
 '''
 
+# imports
 from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import create_engine
@@ -18,7 +23,7 @@ from sqlalchemy import create_engine
 # declare MetaData object
 metadata_obj = MetaData()
 
-# create DB engine connection. Userid='root', pasword='sqluser'
+# create DB engine connection. Userid='root', password='sqluser'
 engine = create_engine("mysql+pymysql://root:sqluser@localhost/sakila", echo=False)
 
 # get list of tables in the database ( ==> table reflection)

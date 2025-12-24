@@ -1,18 +1,28 @@
-# SQL Alchamy Tutorial code
+# Getting started with SQLAlchemy
 
-Step-by-step code demonstrating SQLAlchemy
+## Komal, December 2025
 
-## Starting core concepts
+This repo is a step-by-step guide to using Python and SQLAlchemy for database access.
+
+Information is based on the documentation on the official website : https://www.sqlalchemy.org/
+
+You will need an understanding of Python, OOP and SQL together with an idea on how relational databases work.
+
+Early program examples start by accessing a virtual database, **SQLIte3**, held in memory. Therefore, you don't need to install anything database server on your devices.
+
+Later examples will start using an locally installed database server, such as MySQL or PostGres. You can install either when we get to that section. Installation information is not provided here.
+
+Install SQLAlchemy modules using <code> pip install SQLalchemy </code>. This should install the following latest versions of
+
+    greenlet==3.3.0
+    SQLAlchemy==2.0.45
+    typing_extensions==4.15.0
+
+## Section 01 : Starting core concepts
 
 https://docs.sqlalchemy.org/en/20/tutorial/index.html#unified-tutorial
 
-<code> pip install SQLalchemy </code>
-
-greenlet==3.3.0
-SQLAlchemy==2.0.45
-typing_extensions==4.15.0
-
-In these first few examples there is no SQL server. SQLAlchemy creates a temp SQL database in memory. Data inserted into tables is lost when the program ends.
+In these first few examples there is no SQL server. SQLAlchemy creates a temp SQL database in memory. Data inserted into database tables is lost when the program ends.
 
 | Program  | Demonstrating                                    |
 | -------- | ------------------------------------------------ |
@@ -22,39 +32,51 @@ In these first few examples there is no SQL server. SQLAlchemy creates a temp SQ
 | sqlal_04 | pass parameters to the SELECT ... WHERE command  |
 | sqlal_05 | beginning OOP style coding                       |
 
-## Working with Database Metadata (ORM)
-
-https://docs.sqlalchemy.org/en/20/tutorial/metadata.html
+## Section 02: Moving towards and ORM Database Model
 
 In this section we look at how to map SQL terminology, i.e. database, table and column, to SQLAlchemy's Python ORM / OOP style terminology.
 
-The main import is a MetaData object, within which all tables will be defined and created.
+Full explanations : https://docs.sqlalchemy.org/en/20/tutorial/metadata.html
 
-<code> from sqlalchemy import MetaData
-metadata_obj = MetaData() </code>
+The module to import gives a **MetaData** object, with which all tables will be defined and created.
+
+<code>from SQLalchemy import MetaData </code>
+
+<code>metadata_obj = MetaData() </code>
 
 | Program  | Demonstrating                         |
 | -------- | ------------------------------------- |
-| sqlal_11 | Define SQL table as an ORM oject      |
+| sqlal_11 | Define SQL table as an ORM object     |
 | sqlal_12 | Define 2nd SQL table with foreign key |
 | sqlal_13 | Create the database and add data      |
 
-## Working with Database Classes and OOP
+## Section 03: Working with Database Classes and OOP
+
+Here we use Python classes to define our database, whilst still using the underlying MetaData base models.
 
 https://docs.sqlalchemy.org/en/20/tutorial/metadata.html#using-orm-declarative-forms-to-define-table-metadata
 
-Finally, we use Python classes to define our database, whilst still using the underlying MetaData base models.
+<code> from SQLAlchemy.orm import DeclarativeBase </code>
 
-<code> from sqlalchemy.orm import DeclarativeBase </code>
-
-| Program  | Demonstrating                    |
-| -------- | -------------------------------- |
-| sqlal_21 | Define SQL table as an OOP oject |
+| Program  | Demonstrating                                 |
+| -------- | --------------------------------------------- |
+| sqlal_21 | Define SQL table as an **OOP** object         |
+| sqlal_22 | Issuing INSERT statement in SQLALchemy format |
 
 ## Misc Programs
 
-| Program              | Demonstrating                                    |
-| -------------------- | ------------------------------------------------ |
-| installTest.py       | Check SQLAlchemy version                         |
-| sqlal_99_mysql.py    | Connecting to local MySQL, using Sakila database |
-| sqlal_99_postgres.py | Connecting to local Postgres, Chinook database   |
+Some worked examples showing various hint sand tips
+
+The examples use
+
+- MySQL with the free-to-install **Sakila** movie database
+- PostGresSQL with the free-to-install **Chinook** music database
+
+| Program              | Demonstrating                                                          |
+| -------------------- | ---------------------------------------------------------------------- |
+| installTest.py       | Check SQLAlchemy version                                               |
+|                      |                                                                        |
+| sqlal_99_mysql_01.py | Connect to a local MySQL server, and retrieve table definitions        |
+| sqlal_99_mysql_02.py | Connect to a local MySQL server, run SQL SELECT query on existing data |
+|                      |                                                                        |
+| sqlal_99_postgres.py | Connecting to local Postgres, Chinook database                         |

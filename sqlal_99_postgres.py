@@ -1,19 +1,15 @@
 '''
-Example of connecting to local PostGres installation
-conecting to Chinook database
+Example of connecting to local PostGres installation to access the Chinook database
 
     pip install SQLAlchemy
     pip install psycopg2
 
 '''
 
+# imports
+from sqlalchemy import create_engine, text
 
-from sqlalchemy import create_engine
-from sqlalchemy import text
-import psycopg2
-
-
-# create DB engine object. User id='postgres', pasword='sqluser', connecting to chinook database
+# create DB engine object. User id='postgres', password='sqluser', connecting to chinook database
 engine = create_engine("postgresql+psycopg2://postgres:sqluser@localhost:5432/chinook", echo=True)
 
 # connect to Chinook and run query

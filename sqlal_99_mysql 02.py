@@ -1,22 +1,21 @@
 '''
 
-Example of connecting to local MySQL with SAKILA database installed
+Getting started with SQLAlchemy     
 
-    pip install SQLAlchemy
+Komal, December 2025
 
+This program accesses a local MySQL server and connects to the SAKILA database. A SELECT statement is executed to get data.
 
-Open the MySQL Dashboard and you will see this program affecting the Network Status, 
-in the data sent/recd graph
+Open your MySQL Workbench and look at the Dashboard. 
+Every time this program is run you should see the Network Status graph show data being sent / rec'd.
 
-Other tables in Saklia you could try accessing: 
-    actor, actor_info, address, city, customer, film, film_actor, staff, rental, store
 
 '''
 
 from sqlalchemy import create_engine, text
 
 
-# create DB engine object. User id='root', pasword='sqluser'
+# create DB engine object. User id='root', password='sqluser'
 engine = create_engine("mysql+pymysql://root:sqluser@localhost/sakila", echo=False)
 
 # connect to Sakila and run query
@@ -33,3 +32,5 @@ with engine.connect() as conn:
     for row in result:      # result comes back as a list
         print(f"{row.title}, \t({row.release_year}), \t{row.rating}, \t{row.description}" )
 
+
+''' Next, we look at CRUD operations on the database '''

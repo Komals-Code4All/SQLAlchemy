@@ -1,13 +1,21 @@
+''' 
 
-''' In this example, pass parameters to the SELECT command '''
+Getting started with SQLAlchemy     
 
+Komal, December 2025
+
+
+In this example the SELECT statement has parameters passed to it. 
+This will allow taking user input, such as a search string, making the code more flexible.
+
+'''
+
+# imports
 from sqlalchemy import create_engine
 from sqlalchemy import text
 
 # create DB engine object
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=False)       # NB : echo off
-
-
 
 # create table in memory and insert data (many values)
 with engine.begin() as conn:    
@@ -19,7 +27,7 @@ with engine.begin() as conn:
          {"id": 1002, "fname": "Barney"},
          {"id": 1003, "fname": "Betty"},
          {"id": 1004, "fname": "Peebles"},
-         {"id": 1005, "fname": "Bambam"},],
+         {"id": 1005, "fname": "Bam Bam"},],
     )    
 
 # execute SELECT ... WHERE ... ORDER BY by fname
