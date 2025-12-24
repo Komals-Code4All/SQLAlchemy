@@ -32,7 +32,7 @@ In these first few examples there is no SQL server. SQLAlchemy creates a temp SQ
 | sqlal_04 | pass parameters to the SELECT ... WHERE command  |
 | sqlal_05 | beginning OOP style coding                       |
 
-## Section 02: Moving towards and ORM Database Model
+## Section 02: Moving towards ORM Database Model
 
 In this section we look at how to map SQL terminology, i.e. database, table and column, to SQLAlchemy's Python ORM / OOP style terminology.
 
@@ -65,7 +65,7 @@ https://docs.sqlalchemy.org/en/20/tutorial/metadata.html#using-orm-declarative-f
 
 ## Misc Programs
 
-Some worked examples showing various hint sand tips
+Some worked examples showing various hints and tips
 
 The examples use
 
