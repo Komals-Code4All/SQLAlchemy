@@ -1,10 +1,9 @@
-from typing import List
-from typing import Optional
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import relationship
+
+
+from typing import List, Optional
+from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, text
-from sqlalchemy.orm import DeclarativeBase
+
 
 '''
 
@@ -12,6 +11,7 @@ Define tables using OOP classes
 
 '''
 
+# use SQLAlchemy's DeclarativeBase class, as parent class for our tables
 class Base(DeclarativeBase):
     pass
 
@@ -47,7 +47,6 @@ class Address(Base):
         return f"Address(id={self.id!r}, email_address={self.email_address!r})"
 
 
-
 # add data using OOP classes
 fred = User(id=1000, name="Fred", fullname="Mr Fred Flinstone")
 wilma = User(id=1001, name="Wilma", fullname="Mrs Wilma Flintstone")
@@ -64,3 +63,5 @@ print(fred)
 print(wilma)
 print(barney)
 
+''' NB: there is no database as such. Data is held in objects
+    Next, we look at how to define a database using OOP notation '''
